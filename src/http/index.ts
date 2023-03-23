@@ -1,17 +1,23 @@
 /*
  * @Date: 2023-03-23 10:29:25
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 10:59:53
+ * @LastEditTime: 2023-03-23 14:51:29
  * @FilePath: \manager\src\http\index.ts
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosRequestHeaders } from 'axios';
 import { ElMessage } from 'element-plus';
 
 const config = {
-  baseURL: 'http://localhost:8089',
+  // baseURL: 'http://localhost:8089',
+  baseURL: '/api',
   timeout: 10000,
 };
-
+export interface Result<T = any> {
+  //interface定义数据类型
+  code: number;
+  msg: string;
+  data: T;
+}
 class Http {
   private instance: AxiosInstance;
   constructor(config: AxiosRequestConfig) {
@@ -82,25 +88,28 @@ class Http {
               error.data.msg = '未知错误';
           }
           ElMessage.error(error.data.msg);
+        } else {
+          error.data.msg = '连接服务器失败';
+          ElMessage.error(error.data.msg);
         }
       }
     );
   }
   //get
-  get(url: string, params?: object): Promise<any> {
-    return this.instance.get(url, {});
+  get<T = Result>(url: string, params?: object): Promise<T> {
+    return this.instance.get(url, { params });
   }
   //post
-  post(url: string, data?: object): Promise<any> {
+  post<T = Result>(url: string, data?: object): Promise<T> {
     return this.instance.post(url, data);
   }
   //put
-  put(url: string, data?: object): Promise<any> {
+  put<T = Result>(url: string, data?: object): Promise<T> {
     return this.instance.put(url, data);
   }
   //delete
-  delete(url: string): Promise<any> {
+  delete<T = Result>(url: string): Promise<T> {
     return this.instance.delete(url);
   }
 }
-export default Http;
+export default new Http(config);

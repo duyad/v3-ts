@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-23 11:15:35
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 12:59:32
+ * @LastEditTime: 2023-03-23 14:29:42
  * @FilePath: \manager\src\api\user\userModel.ts
  */
 //type 通常用于定义数据的类型
@@ -10,6 +10,7 @@ export type ListUserParm = {
   pageSize: number;
   name: string;
   phone: string;
+  total: number;
 };
 
 export type UserModel = {

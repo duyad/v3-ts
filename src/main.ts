@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-22 13:17:02
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-22 14:15:21
+ * @LastEditTime: 2023-03-23 14:50:08
  * @FilePath: \manager\src\main.ts
  */
 import { createApp } from 'vue';
@@ -12,13 +12,16 @@ import { createPinia } from 'pinia';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
 // createApp(App).mount('#app');
 const pinia = createPinia();
 const app = createApp(App);
 
 app.use(pinia);
-app.use(ElementPlus);
+app.use(ElementPlus, {
+  locale: zhCn,
+});
 app.use(router).mount('#app');
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

@@ -1,26 +1,54 @@
 /*
  * @Date: 2023-03-23 11:14:23
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 11:47:19
+ * @LastEditTime: 2023-03-23 14:56:36
  * @FilePath: \manager\src\composables\user\useUserTable.ts
  */
 import { ListUserParm } from '@/api/user/UserModel';
-import { reactive } from 'vue';
-
+import { onMounted, reactive, ref } from 'vue';
+import { getListApi } from '@/api/user';
+import { nextTick } from 'process';
 export default function useUserTable() {
   const listParm = reactive<ListUserParm>({
     currentPage: 1,
     pageSize: 10,
     name: '',
     phone: '',
+    total: 0,
   });
-  const getList = () => {};
-  const searchBtn = () => {};
-  const resetBtn = () => {};
+  const tableList = ref([]);
+  const tableHeight = ref(0);
+  const getList = async () => {
+    let res = await getListApi(listParm);
+    if (res && res.code == 200) {
+      tableList.value = res.data.records;
+      listParm.total = res.data.total;
+    }
+  };
+  const searchBtn = () => {
+    getList();
+  };
+  const resetBtn = () => {
+    listParm.currentPage = 1;
+    listParm.name = '';
+    listParm.phone = '';
+    getList();
+  };
+  const currentChange = (pageSize: number) => {
+    listParm.pageSize = pageSize;
+    getList();
+  };
+  onMounted(() => {
+    getList();
+    tableHeight.value = window.innerHeight - 250;
+  });
   return {
     listParm,
     getList,
     searchBtn,
     resetBtn,
+    tableList,
+    currentChange,
+    tableHeight,
   };
 }

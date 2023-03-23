@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-22 13:35:16
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-22 15:07:09
+ * @LastEditTime: 2023-03-23 13:46:33
  * @FilePath: \manager\src\router\index.ts
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -13,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: Layout,
     children: [
+      {
+        path: '/',
+        name: '/',
+        component: () => import('@/view/home/index.vue'),
+      },
       {
         path: '/banner',
         name: 'banner',

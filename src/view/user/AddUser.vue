@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-23 12:00:15
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 13:18:45
+ * @LastEditTime: 2023-03-23 13:59:26
  * @FilePath: \manager\src\view\user\AddUser.vue
 -->
 <template>
@@ -65,6 +65,7 @@ import useDialog from '@/hooks/useDialog';
 import { reactive, ref } from 'vue';
 import { UserModel } from '@/api/user/UserModel';
 import { FormInstance } from 'element-plus';
+import { addUserApi } from '@/api/user/index';
 const { dialog, onClose, onConfirm, onShow } = useDialog();
 const show = () => {
   dialog.visible = true;
@@ -97,9 +98,12 @@ const rules = reactive({
 });
 
 const commit = () => {
-  addFormRef.value?.validate(valid => {
+  addFormRef.value?.validate(async valid => {
     if (valid) {
-      onClose();
+      let res = await addUserApi(addModel);
+      if (res && res.code == 200) {
+        onClose();
+      }
     }
   });
 };

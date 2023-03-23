@@ -7,6 +7,10 @@
 <template>
   <div>
     <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" router>
+      <el-menu-item index="/">
+        <el-icon><Menu /></el-icon>
+        <template #title>首页</template>
+      </el-menu-item>
       <el-menu-item index="/user">
         <el-icon><Menu /></el-icon>
         <template #title>用户管理</template>

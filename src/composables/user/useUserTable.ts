@@ -1,13 +1,12 @@
 /*
  * @Date: 2023-03-23 11:14:23
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 14:56:36
+ * @LastEditTime: 2023-03-23 15:17:39
  * @FilePath: \manager\src\composables\user\useUserTable.ts
  */
 import { ListUserParm } from '@/api/user/UserModel';
 import { onMounted, reactive, ref } from 'vue';
 import { getListApi } from '@/api/user';
-import { nextTick } from 'process';
 export default function useUserTable() {
   const listParm = reactive<ListUserParm>({
     currentPage: 1,

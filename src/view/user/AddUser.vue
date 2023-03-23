@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-23 12:00:15
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 13:59:26
+ * @LastEditTime: 2023-03-23 15:17:15
  * @FilePath: \manager\src\view\user\AddUser.vue
 -->
 <template>
@@ -74,11 +74,6 @@ const show = () => {
   addFormRef.value?.resetFields();
   addModel.email = '';
 };
-//暴露出去，给父组件调用
-defineExpose({
-  //把子组件的方法暴露出去
-  show,
-});
 const addFormRef = ref<FormInstance>();
 const addModel = reactive<UserModel>({
   userId: '',
@@ -107,6 +102,11 @@ const commit = () => {
     }
   });
 };
+//暴露出去，给父组件调用
+defineExpose({
+  //把子组件的方法暴露出去
+  show,
+});
 </script>
 
 <style scoped></style>

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 15:04:35
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-24 11:44:39
+ * @LastEditTime: 2023-03-24 11:51:03
  * @FilePath: \manager\src\view\user\index.vue
 -->
 <template>
@@ -58,7 +58,7 @@ import AddUser from './AddUser.vue';
 import useUserTable from '@/composables/user/useUserTable';
 import useUser from '@/composables/user/useUser';
 const { listParm, getList, searchBtn, resetBtn, tableList, currentChange, tableHeight } = useUserTable();
-const { addBtn, editBtn, deleteBtn, addRef } = useUser(getList);
+const { addBtn, editBtn, deleteBtn, addRef } = useUser(getList); //getList：传递的参数
 </script>
 
 <style scoped></style>

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-23 12:00:15
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-24 09:23:43
+ * @LastEditTime: 2023-03-24 11:48:47
  * @FilePath: \manager\src\view\user\AddUser.vue
 -->
 <template>
@@ -68,39 +68,9 @@ import { ElMessage, FormInstance } from 'element-plus';
 import { addUserApi, editUserApi } from '@/api/user/index';
 import { EditType, Title } from '@/type/BaseType';
 const { dialog, onClose, onConfirm, onShow } = useDialog();
-const show = (type: string, row?: UserModel) => {
-  dialog.visible = true;
-  dialog.height = 160;
-  type == EditType.ADD ? (dialog.title = Title.ADD) : (dialog.title = Title.EDIT);
-  if (row) {
-    nextTick(() => {
-      Object.assign(addModel, row);
-    });
-  }
-  addFormRef.value?.resetFields();
-  addModel.email = '';
-  addModel.type = type;
-};
-const emists = defineEmits(['onFresh']);
-const commit = () => {
-  addFormRef.value?.validate(async valid => {
-    if (valid) {
-      let res = null;
-      if (addModel.type == EditType.ADD) {
-        res = await addUserApi(addModel);
-      } else {
-        res = await editUserApi(addModel);
-      }
-      if (res && res.code == 200) {
-        ElMessage.success(res.msg);
-        emists('onFresh');
-        onClose();
-      }
-    }
-  });
-};
-const addFormRef = ref<FormInstance>();
+const addFormRef = ref<FormInstance>(); //定义数据类型-addFormRef.value进行赋值
 const addModel = reactive<UserModel>({
+  //定义数据类型
   userId: '',
   username: '',
   password: '',
@@ -117,11 +87,45 @@ const rules = reactive({
   username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 });
-//暴露出去，给父组件调用
+const show = (type: string, row?: UserModel) => {
+  dialog.visible = true;
+  dialog.height = 160;
+  type == EditType.ADD ? (dialog.title = Title.ADD) : (dialog.title = Title.EDIT);
+  if (row) {
+    nextTick(() => {
+      //数据回显需要在nextTick里面
+      Object.assign(addModel, row);
+    });
+  }
+  addFormRef.value?.resetFields();
+  addModel.email = '';
+  addModel.type = type;
+};
+//暴露子组件方法出去，给父组件调用
 defineExpose({
   //把子组件的方法暴露出去
   show,
 });
+//定义父组件方法-----------------------
+const emists = defineEmits(['onFresh']);
+const commit = () => {
+  addFormRef.value?.validate(async valid => {
+    if (valid) {
+      let res = null;
+      if (addModel.type == EditType.ADD) {
+        res = await addUserApi(addModel);
+      } else {
+        res = await editUserApi(addModel);
+      }
+      if (res && res.code == 200) {
+        ElMessage.success(res.msg);
+        //调用父组件方法-----------------------
+        emists('onFresh');
+        onClose();
+      }
+    }
+  });
+};
 </script>
 
 <style scoped></style>

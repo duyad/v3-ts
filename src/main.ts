@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-22 13:17:02
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-24 08:49:13
+ * @LastEditTime: 2023-03-24 11:56:45
  * @FilePath: \manager\src\main.ts
  */
 import { createApp } from 'vue';
@@ -18,14 +18,12 @@ import myConfirm from './utils/myConfirm';
 // createApp(App).mount('#app');
 const pinia = createPinia();
 const app = createApp(App);
-
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component);
+}
 app.use(pinia);
 app.use(ElementPlus, {
   locale: zhCn,
 });
 app.use(router).mount('#app');
-app.config.globalProperties.$myconfirm = myConfirm;
-
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component);
-}
+app.config.globalProperties.$myconfirm = myConfirm; //挂载在实例上

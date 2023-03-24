@@ -4,6 +4,12 @@ import { ListUserParm, UserModel } from './UserModel';
 export const addUserApi = (parm: UserModel) => {
   return http.post('/api/user', parm);
 };
+export const editUserApi = (parm: UserModel) => {
+  return http.put('/api/user', parm);
+};
 export const getListApi = (parm: ListUserParm) => {
   return http.get('/api/user/list', parm);
+};
+export const deleteUserApi = (userId: string) => {
+  return http.delete('/api/user/' + userId);
 };

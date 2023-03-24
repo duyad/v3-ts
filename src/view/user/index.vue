@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 15:04:35
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 14:55:00
+ * @LastEditTime: 2023-03-24 11:42:26
  * @FilePath: \manager\src\view\user\index.vue
 -->
 <template>
@@ -32,9 +32,9 @@
         <el-table-column prop="email" label="邮箱"></el-table-column>
         <el-table-column prop="username" label="登录账号"></el-table-column>
         <el-table-column fixed="right" label="Operations" align="center">
-          <template #default>
-            <el-button type="primary" icon="Edit" size="small" @click="editBtn">编辑</el-button>
-            <el-button type="danger" icon="Delete" size="small" @click="deleteBtn">删除</el-button>
+          <template #default="scope">
+            <el-button type="primary" icon="Edit" size="small" @click="editBtn(scope.row)">编辑</el-button>
+            <el-button type="danger" icon="Delete" size="small" @click="deleteBtn(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -49,7 +49,7 @@
         :pager-count="7">
       </el-pagination>
     </el-main>
-    <AddUser ref="addRef"></AddUser>
+    <AddUser ref="addRef" @onFresh="getList"></AddUser>
   </div>
 </template>
 
@@ -58,7 +58,7 @@ import AddUser from './AddUser.vue';
 import useUserTable from '@/composables/user/useUserTable';
 import useUser from '@/composables/user/useUser';
 const { listParm, getList, searchBtn, resetBtn, tableList, currentChange, tableHeight } = useUserTable();
-const { addBtn, editBtn, deleteBtn, addRef } = useUser();
+const { addBtn, editBtn, deleteBtn, addRef } = useUser(getList);
 </script>
 
 <style scoped></style>

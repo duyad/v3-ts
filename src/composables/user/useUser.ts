@@ -1,20 +1,36 @@
 /*
  * @Date: 2023-03-23 11:48:27
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 12:51:02
+ * @LastEditTime: 2023-03-24 11:43:06
  * @FilePath: \manager\src\composables\user\useUser.ts
  */
 
+import { UserModel } from '@/api/user/UserModel';
+import { EditType, FuncList } from '@/type/BaseType';
 import { ref } from 'vue';
-
+import { deleteUserApi } from '@/api/user/index';
+import { ElMessage } from 'element-plus';
+import useInstance from '@/hooks/useInstance';
 //增删改
-export default function useUser() {
-  const addRef = ref<{ show: () => void }>();
+export default function useUser(getList: FuncList) {
+  const { global } = useInstance();
+  const addRef = ref<{ show: (type: string, row?: UserModel) => void }>();
   const addBtn = () => {
-    addRef.value?.show();
+    addRef.value?.show(EditType.ADD);
   };
-  const editBtn = () => {};
-  const deleteBtn = () => {};
+  const editBtn = (row: UserModel) => {
+    addRef.value?.show(EditType.EDIT, row);
+  };
+  const deleteBtn = async (row: UserModel) => {
+    let confirm = await global.$myconfirm('确定删除该项吗？');
+    if (confirm) {
+      let res = await deleteUserApi(row.userId);
+      if (res && res.code == 200) {
+        ElMessage.success(res.msg);
+        getList();
+      }
+    }
+  };
   return {
     addBtn,
     editBtn,

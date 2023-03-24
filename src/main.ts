@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-22 13:17:02
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 14:50:08
+ * @LastEditTime: 2023-03-24 08:49:13
  * @FilePath: \manager\src\main.ts
  */
 import { createApp } from 'vue';
@@ -13,6 +13,7 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
+import myConfirm from './utils/myConfirm';
 
 // createApp(App).mount('#app');
 const pinia = createPinia();
@@ -23,6 +24,7 @@ app.use(ElementPlus, {
   locale: zhCn,
 });
 app.use(router).mount('#app');
+app.config.globalProperties.$myconfirm = myConfirm;
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);

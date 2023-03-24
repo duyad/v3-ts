@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 15:04:35
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-24 11:42:26
+ * @LastEditTime: 2023-03-24 11:44:39
  * @FilePath: \manager\src\view\user\index.vue
 -->
 <template>
@@ -31,7 +31,7 @@
         <el-table-column prop="phone" label="电话"></el-table-column>
         <el-table-column prop="email" label="邮箱"></el-table-column>
         <el-table-column prop="username" label="登录账号"></el-table-column>
-        <el-table-column fixed="right" label="Operations" align="center">
+        <el-table-column fixed="right" label="操作" align="center">
           <template #default="scope">
             <el-button type="primary" icon="Edit" size="small" @click="editBtn(scope.row)">编辑</el-button>
             <el-button type="danger" icon="Delete" size="small" @click="deleteBtn(scope.row)">删除</el-button>

@@ -1,22 +1,22 @@
 <!--
  * @Date: 2023-03-22 15:04:35
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-24 11:51:03
+ * @LastEditTime: 2023-03-28 10:09:18
  * @FilePath: \manager\src\view\user\index.vue
 -->
 <template>
   <div>
     <el-main>
       <el-form :model="listParm" ref="form" label-width="80px" :inline="true" size="default">
-        <el-form-item label="姓名">
-          <el-input v-model="listParm.name"></el-input>
+        <el-form-item>
+          <el-input v-model="listParm.name" placeholder="请输入姓名"></el-input>
         </el-form-item>
-        <el-form-item label="电话">
-          <el-input v-model="listParm.phone"></el-input>
+        <el-form-item>
+          <el-input v-model="listParm.phone" placeholder="请输入电话"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button @click="searchBtn" type="primary" icon="Search">搜索</el-button>
-          <el-button @click="resetBtn" icon="RefreshLeft">重置</el-button>
+          <el-button @click="resetBtn" type="danger" plain icon="RefreshLeft">重置</el-button>
           <el-button @click="addBtn" type="success" icon="Plus" plain>新增</el-button>
         </el-form-item>
       </el-form>
@@ -33,8 +33,8 @@
         <el-table-column prop="username" label="登录账号"></el-table-column>
         <el-table-column fixed="right" label="操作" align="center">
           <template #default="scope">
-            <el-button type="primary" icon="Edit" size="small" @click="editBtn(scope.row)">编辑</el-button>
-            <el-button type="danger" icon="Delete" size="small" @click="deleteBtn(scope.row)">删除</el-button>
+            <el-button type="primary" icon="Edit" size="small" plain @click="editBtn(scope.row)">编辑</el-button>
+            <el-button type="danger" icon="Delete" size="small" plain @click="deleteBtn(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

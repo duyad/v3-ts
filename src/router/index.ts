@@ -1,13 +1,18 @@
 /*
  * @Date: 2023-03-22 13:35:16
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 13:46:33
+ * @LastEditTime: 2023-03-31 08:37:18
  * @FilePath: \manager\src\router\index.ts
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/view/login/index.vue'),
+  },
   {
     path: '/home',
     name: 'home',

@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-22 13:17:02
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 13:42:26
+ * @LastEditTime: 2023-03-31 10:51:54
  * @FilePath: \manager\vite.config.ts
  */
 import { defineConfig } from 'vite';
@@ -19,7 +19,7 @@ export default defineConfig({
     open: true, //自动打开在浏览器
     proxy: {
       '/api': {
-        target: 'http://localhost:8089',
+        target: 'http://localhost:3300',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ''),
       },

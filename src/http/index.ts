@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-23 10:29:25
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 14:51:29
+ * @LastEditTime: 2023-03-31 12:50:52
  * @FilePath: \manager\src\http\index.ts
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosRequestHeaders } from 'axios';

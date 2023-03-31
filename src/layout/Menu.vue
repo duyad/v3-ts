@@ -1,12 +1,24 @@
 <!--
  * @Date: 2023-03-22 14:43:47
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-22 15:15:55
+ * @LastEditTime: 2023-03-31 13:10:23
  * @FilePath: \manager\src\layout\Menu.vue
 -->
 <template>
   <div>
-    <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" router>
+    <div class="logo">
+      <!-- <img src="images/logo.png" width="122.5" alt="" /> -->
+      <img src="./../assets/login/login-logo.png" alt="" style="width: 117px; height: 32px" />
+    </div>
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-vertical-demo"
+      router
+      background-color="#343744"
+      text-color="#bfcbd9"
+      active-text-color="#f4f4f5"
+      style="border: 0"
+    >
       <el-menu-item index="/">
         <el-icon><Menu /></el-icon>
         <template #title>首页</template>
@@ -51,8 +63,12 @@ const activeIndex = computed(() => {
 </script>
 
 <style scoped>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
+.logo {
+  text-align: center;
+  background-color: rgb(52, 55, 68);
+  /* height: 100px;
+  line-height: 100px;
+  padding: 12px 5px; */
+  padding: 46px 37px 67px 36px;
 }
 </style>

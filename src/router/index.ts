@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-22 13:35:16
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 08:37:18
+ * @LastEditTime: 2023-03-31 14:26:30
  * @FilePath: \manager\src\router\index.ts
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -24,9 +24,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/view/home/index.vue'),
       },
       {
-        path: '/banner',
-        name: 'banner',
-        component: () => import('@/view/banner/index.vue'),
+        path: '/member',
+        name: 'member',
+        component: () => import('@/view/member/index.vue'),
       },
       {
         path: '/category',
@@ -34,24 +34,19 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/view/category/index.vue'),
       },
       {
-        path: '/comment',
-        name: 'comment',
-        component: () => import('@/view/comment/index.vue'),
+        path: '/food',
+        name: 'food',
+        component: () => import('@/view/food/index.vue'),
       },
       {
-        path: '/goods',
-        name: 'goods',
-        component: () => import('@/view/goods/index.vue'),
+        path: '/combo',
+        name: 'combo',
+        component: () => import('@/view/combo/index.vue'),
       },
       {
         path: '/order',
         name: 'order',
         component: () => import('@/view/order/index.vue'),
-      },
-      {
-        path: '/user',
-        name: 'user',
-        component: () => import('@/view/user/index.vue'),
       },
     ],
   },

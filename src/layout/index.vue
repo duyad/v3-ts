@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 14:34:07
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 13:17:25
+ * @LastEditTime: 2023-03-31 13:45:39
  * @FilePath: \manager\src\layout\index.vue
 -->
 <template>
@@ -24,15 +24,25 @@
 </template>
 
 <script setup lang="ts">
+import { logoutApi } from '@/api/login';
+import router from '@/router';
+import { ElMessage } from 'element-plus';
 import { reactive, ref } from 'vue';
 import Menu from './Menu.vue';
 
 const userInfo = reactive({
   name: '',
 });
-Object.assign(userInfo, JSON.parse(localStorage.getItem('userInfo')));
+Object.assign(userInfo, JSON.parse(localStorage.getItem('userInfo') || '{}'));
 
-const logout = () => {};
+const logout = async () => {
+  let res = await logoutApi();
+  if (res && res.code == 200) {
+    ElMessage.success(res.msg);
+    localStorage.removeItem('userInfo');
+    router.push({ path: '/login' });
+  }
+};
 </script>
 
 <style lang="scss" scoped>

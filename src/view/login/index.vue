@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-30 16:53:33
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 13:43:16
+ * @LastEditTime: 2023-04-03 14:33:03
  * @FilePath: \manager\src\view\login\index.vue
 -->
 <template>
@@ -73,7 +73,7 @@ const handleLogin = () => {
         if (res.code == 200) {
           loading.value = false;
           localStorage.setItem('userInfo', JSON.stringify(res.data));
-          router.push({ path: '/' });
+          router.push({ path: '/member' });
         }
         ElMessage.success(res.msg);
       } finally {

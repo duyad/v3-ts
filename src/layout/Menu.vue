@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 14:43:47
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 15:15:59
+ * @LastEditTime: 2023-04-03 14:33:36
  * @FilePath: \manager\src\layout\Menu.vue
 -->
 <template>
@@ -58,13 +58,13 @@ const activeIndex = computed(() => {
 });
 const menuHandle = (item: Object, type: boolean) => {};
 const menuList = ref([
-  {
-    id: '1',
-    name: '首页',
-    url: '/',
-    icon: 'House',
-    children: null,
-  },
+  // {
+  //   id: '1',
+  //   name: '首页',
+  //   url: '/',
+  //   icon: 'House',
+  //   children: null,
+  // },
   {
     id: '2',
     name: '员工管理',

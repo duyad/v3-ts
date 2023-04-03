@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 14:43:47
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 14:27:19
+ * @LastEditTime: 2023-03-31 15:15:59
  * @FilePath: \manager\src\layout\Menu.vue
 -->
 <template>
@@ -19,6 +19,7 @@
         text-color="#bfcbd9"
         active-text-color="#f4f4f5"
         router
+        style="border: 0"
       >
         <div v-for="item in menuList" :key="item.id">
           <el-sub-menu v-if="item.children" :index="item.url">

@@ -1,9 +1,10 @@
 /*
  * @Date: 2023-03-23 10:29:25
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 12:50:52
+ * @LastEditTime: 2023-03-31 17:07:18
  * @FilePath: \manager\src\http\index.ts
  */
+import router from '@/router';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosRequestHeaders } from 'axios';
 import { ElMessage } from 'element-plus';
 
@@ -45,6 +46,11 @@ class Http {
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => {
         if (res.data.code != 200) {
+          if (res.data.msg == 'notToken') {
+            ElMessage.error('登录已过期！请重新登录！');
+            router.push({ path: '/login' });
+            return;
+          }
           ElMessage.error(res.data.msg || '服务器错误');
           return Promise.reject(res.data.msg || '服务器错误');
         }

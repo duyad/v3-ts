@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-23 12:06:43
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-23 12:40:04
+ * @LastEditTime: 2023-03-31 15:49:01
  * @FilePath: \manager\src\components\SysDialog.vue
 -->
 <template>
@@ -63,7 +63,7 @@ const onConfirm = () => {
     margin-right: 0px;
     border-top-left-radius: 7px !important;
     border-top-right-radius: 7px !important;
-    background-color: #009688 !important;
+    background-color: #343744 !important;
     .el-dialog__title {
       color: #fff !important;
       font-size: 16px;

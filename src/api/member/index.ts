@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-31 15:35:14
  * @LastEditors: duyad
- * @LastEditTime: 2023-04-03 16:05:44
+ * @LastEditTime: 2023-04-03 16:29:53
  * @FilePath: \manager\src\api\member\index.ts
  */
 import http from '@/http';
@@ -17,6 +17,6 @@ export const employeeEdit = (parm: AddMemberForm) => {
 export const employeeGet = (parm: ListMemberParams) => {
   return http.get('/employee/list', parm);
 };
-// export const deleteCategoryApi = (userId: string) => {
-//   return http.delete('/api/category/' + userId);
-// };
+export const employeeGetDelete = (id: string) => {
+  return http.delete('/employee/' + id);
+};

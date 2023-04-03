@@ -1,7 +1,7 @@
 import { ListMemberParams, AddMemberForm } from '@/api/member/member';
 import { onMounted, reactive, ref } from 'vue';
 import { EditType } from '@/type/BaseType';
-import { employeeGet, employeeEdit } from '@/api/member/index';
+import { employeeGet, employeeEdit, employeeGetDelete } from '@/api/member/index';
 import useInstance from '@/hooks/useInstance';
 import { ElMessage } from 'element-plus';
 export default function category() {
@@ -53,7 +53,7 @@ export default function category() {
   const deleteBtn = async (row: AddMemberForm) => {
     const confirm = await global.$myconfirm('确定删除该项吗？');
     if (confirm) {
-      let res = await deleteCategoryApi(row.categoryId);
+      let res = await employeeGetDelete(row.id);
       if (res && res.code == 200) {
         ElMessage.success('删除成功');
         getList();

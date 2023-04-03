@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-28 10:23:10
  * @LastEditors: duyad
- * @LastEditTime: 2023-04-03 16:02:29
+ * @LastEditTime: 2023-04-03 16:11:32
  * @FilePath: \manager\src\view\member\Add.vue
 -->
 <template>
@@ -63,7 +63,7 @@ import { EditType, Title } from '@/type/BaseType';
 import { reactive, ref, nextTick } from 'vue';
 import { ElMessage, FormInstance } from 'element-plus';
 import { AddMemberForm } from '@/api/member/member';
-import { employeeSave } from '@/api/member';
+import { employeeEdit } from '@/api/member';
 const { dialog, onClose, onConfirm, onShow } = useDialog();
 
 //定义新增数据
@@ -113,9 +113,9 @@ const commit = () => {
     if (valid) {
       let res = null;
       if (addModel.type == EditType.ADD) {
-        res = await employeeSave(addModel);
+        res = await employeeEdit(addModel);
       } else {
-        res = await employeeSave(addModel);
+        res = await employeeEdit(addModel);
       }
       if (res && res.code == 200) {
         ElMessage.success(res.msg);

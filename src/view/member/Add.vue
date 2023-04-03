@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-28 10:23:10
  * @LastEditors: duyad
- * @LastEditTime: 2023-04-03 16:11:32
+ * @LastEditTime: 2023-04-03 17:11:34
  * @FilePath: \manager\src\view\member\Add.vue
 -->
 <template>
@@ -61,9 +61,9 @@ import SysDialog from '@/components/SysDialog.vue';
 import useDialog from '@/hooks/useDialog';
 import { EditType, Title } from '@/type/BaseType';
 import { reactive, ref, nextTick } from 'vue';
-import { ElMessage, FormInstance } from 'element-plus';
 import { AddMemberForm } from '@/api/member/member';
-import { employeeEdit } from '@/api/member';
+import { employeeEdit, employeeSave } from '@/api/member';
+import { ElMessage, FormInstance } from 'element-plus';
 const { dialog, onClose, onConfirm, onShow } = useDialog();
 
 //定义新增数据
@@ -73,9 +73,9 @@ const addModel = reactive<AddMemberForm>({
   username: '',
   name: '',
   password: '',
-  sex: '',
-  phone: 0,
-  idNumber: 0,
+  sex: '1',
+  phone: null,
+  idNumber: null,
   status: '',
   createTime: '',
   updateTime: '',
@@ -113,7 +113,7 @@ const commit = () => {
     if (valid) {
       let res = null;
       if (addModel.type == EditType.ADD) {
-        res = await employeeEdit(addModel);
+        res = await employeeSave(addModel);
       } else {
         res = await employeeEdit(addModel);
       }

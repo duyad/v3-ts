@@ -14,7 +14,7 @@ export default function category() {
     page: 1,
     pageSize: 10,
     name: '',
-    // total: 0,
+    total: 0,
   });
   //获取userInfo
   const userInfo = ref(JSON.parse(localStorage.getItem('userInfo')));

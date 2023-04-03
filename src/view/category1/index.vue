@@ -1,8 +1,8 @@
 <!--
  * @Date: 2023-03-22 15:04:31
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-28 12:19:04
- * @FilePath: \manager\src\view\category\index.vue
+ * @LastEditTime: 2023-04-03 13:49:24
+ * @FilePath: \manager\src\view\category1\index.vue
 -->
 <template>
   <div>
@@ -34,9 +34,7 @@
         layout="total,  prev, pager, next, jumper"
         :total="ListCategoryParm.total"
         background
-      >
-        :pager-count="7">
-      </el-pagination>
+      ></el-pagination>
     </el-main>
     <AddCategory ref="addRef" @updata-table="getList"></AddCategory>
   </div>

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 15:04:35
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-28 10:09:18
+ * @LastEditTime: 2023-04-03 13:49:16
  * @FilePath: \manager\src\view\user\index.vue
 -->
 <template>
@@ -45,9 +45,7 @@
         layout="total,  prev, pager, next, jumper"
         :total="listParm.total"
         background
-      >
-        :pager-count="7">
-      </el-pagination>
+      ></el-pagination>
     </el-main>
     <AddUser ref="addRef" @onFresh="getList"></AddUser>
   </div>

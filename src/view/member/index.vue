@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 15:04:31
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 17:04:53
+ * @LastEditTime: 2023-04-03 14:16:21
  * @FilePath: \manager\src\view\member\index.vue
 -->
 <template>
@@ -28,10 +28,11 @@
         <el-table-column prop="username" label="登录账号"></el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
         <el-table-column prop="idNumber" label="身份证号"></el-table-column>
-        <el-table-column prop="createTime" label="创建时间"></el-table-column>
-        <el-table-column prop="createUser" label="创建人"></el-table-column>
-        <el-table-column prop="updateTime" label="更新时间"></el-table-column>
-        <el-table-column prop="updateUser" label="更新人"></el-table-column>
+        <el-table-column prop="sex" label="账号状态" v-if="userInfo.id == 1">
+          <template #default="scope">
+            <el-switch v-model="scope.row.statusFlag" />
+          </template>
+        </el-table-column>
         <el-table-column fixed="right" label="操作" align="center" width="200px">
           <template #default="scope">
             <el-button type="primary" icon="Edit" size="small" plain @click="editBtn(scope.row)">编辑</el-button>
@@ -46,9 +47,7 @@
         layout="total,  prev, pager, next, jumper"
         :total="ListMemberParams.total"
         background
-      >
-        :pager-count="7">
-      </el-pagination>
+      ></el-pagination>
     </el-main>
     <Add ref="addRef" @updata-table="getList"></Add>
   </div>
@@ -69,6 +68,7 @@ const {
   deleteBtn,
   getList,
   tableHeight,
+  userInfo,
 } = category();
 </script>
 

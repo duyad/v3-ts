@@ -15,8 +15,10 @@ export default function category() {
     page: 1,
     pageSize: 10,
     name: '',
-    total: 0,
+    // total: 0,
   });
+  //获取userInfo
+  const userInfo = ref(JSON.parse(localStorage.getItem('userInfo')));
   //定义弹框实例
   const addRef = ref<{ show: (type: string, row?: CategoryModel) => void }>();
   //搜索
@@ -54,6 +56,9 @@ export default function category() {
   const getList = async () => {
     let res = await employeeApi(ListMemberParams);
     if (res && res.code == 200) {
+      res.data.records.map(v => {
+        v.statusFlag = v.status == 1 ? true : false;
+      });
       tableList.value = res.data.records;
       ListMemberParams.total = res.data.total;
     }
@@ -79,5 +84,6 @@ export default function category() {
     deleteBtn,
     getList,
     tableHeight,
+    userInfo,
   };
 }

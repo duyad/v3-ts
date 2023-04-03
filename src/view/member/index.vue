@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-22 15:04:31
  * @LastEditors: duyad
- * @LastEditTime: 2023-04-03 14:16:21
+ * @LastEditTime: 2023-04-03 16:05:08
  * @FilePath: \manager\src\view\member\index.vue
 -->
 <template>
@@ -28,9 +28,9 @@
         <el-table-column prop="username" label="登录账号"></el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
         <el-table-column prop="idNumber" label="身份证号"></el-table-column>
-        <el-table-column prop="sex" label="账号状态" v-if="userInfo.id == 1">
+        <el-table-column prop="sex" label="账号状态" v-if="userInfo.username == 'admin'">
           <template #default="scope">
-            <el-switch v-model="scope.row.statusFlag" />
+            <el-switch @change="statusChange(scope.row)" v-model="scope.row.statusFlag" />
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="操作" align="center" width="200px">
@@ -69,6 +69,7 @@ const {
   getList,
   tableHeight,
   userInfo,
+  statusChange,
 } = category();
 </script>
 

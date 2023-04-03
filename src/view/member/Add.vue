@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-03-28 10:23:10
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 16:51:11
+ * @LastEditTime: 2023-04-03 16:02:29
  * @FilePath: \manager\src\view\member\Add.vue
 -->
 <template>
@@ -68,12 +68,19 @@ const { dialog, onClose, onConfirm, onShow } = useDialog();
 
 //定义新增数据
 const addModel = reactive<AddMemberForm>({
-  type: '1',
+  type: '',
+  id: '',
   username: '',
   name: '',
-  sex: '1',
-  phone: null,
-  idNumber: null,
+  password: '',
+  sex: '',
+  phone: 0,
+  idNumber: 0,
+  status: '',
+  createTime: '',
+  updateTime: '',
+  createUser: '',
+  updateUser: '',
 });
 //定义验证规则
 const rules = reactive({

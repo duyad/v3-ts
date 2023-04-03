@@ -1,10 +1,9 @@
-import { ListMemberParams } from '@/api/member/member';
+import { ListMemberParams, AddMemberForm } from '@/api/member/member';
 import { onMounted, reactive, ref } from 'vue';
 import { EditType } from '@/type/BaseType';
-import { deleteCategoryApi, getListApi } from '@/api/category/index';
+import { employeeGet, employeeEdit } from '@/api/member/index';
 import useInstance from '@/hooks/useInstance';
 import { ElMessage } from 'element-plus';
-import { employeeApi } from '@/api/member/index';
 export default function category() {
   //获取全局挂载
   const { global } = useInstance();
@@ -20,7 +19,7 @@ export default function category() {
   //获取userInfo
   const userInfo = ref(JSON.parse(localStorage.getItem('userInfo')));
   //定义弹框实例
-  const addRef = ref<{ show: (type: string, row?: CategoryModel) => void }>();
+  const addRef = ref<{ show: (type: string, row?: AddMemberForm) => void }>();
   //搜索
   const searchBtn = () => {
     getList();
@@ -35,12 +34,23 @@ export default function category() {
   const addBtn = () => {
     addRef.value?.show(EditType.ADD);
   };
+  //改变状态
+  const statusChange = async (row: AddMemberForm) => {
+    let res = await employeeEdit({
+      id: row.id,
+      status: row.statusFlag ? 1 : 0,
+    });
+    if (res && res.code == 200) {
+      ElMessage.success('删除成功');
+      getList();
+    }
+  };
   //表格编辑
-  const editBtn = (row: CategoryModel) => {
+  const editBtn = (row: AddMemberForm) => {
     addRef.value?.show(EditType.EDIT, row);
   };
   //表格删除
-  const deleteBtn = async (row: CategoryModel) => {
+  const deleteBtn = async (row: AddMemberForm) => {
     const confirm = await global.$myconfirm('确定删除该项吗？');
     if (confirm) {
       let res = await deleteCategoryApi(row.categoryId);
@@ -54,7 +64,7 @@ export default function category() {
   const tableList = ref([]);
   //获取表格数据方法
   const getList = async () => {
-    let res = await employeeApi(ListMemberParams);
+    let res = await employeeGet(ListMemberParams);
     if (res && res.code == 200) {
       res.data.records.map(v => {
         v.statusFlag = v.status == 1 ? true : false;
@@ -85,5 +95,6 @@ export default function category() {
     getList,
     tableHeight,
     userInfo,
+    statusChange,
   };
 }

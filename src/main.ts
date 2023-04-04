@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-22 13:17:02
  * @LastEditors: duyad
- * @LastEditTime: 2023-03-31 13:04:12
+ * @LastEditTime: 2023-04-04 15:43:03
  * @FilePath: \manager\src\main.ts
  */
 import { createApp } from 'vue';
@@ -9,6 +9,7 @@ import '@/style/common.css';
 import '@/style/index.css';
 import '@/style/login.css';
 import '@/style/page.css';
+import './style.scss';
 import router from './router';
 import App from './App.vue';
 import { createPinia } from 'pinia';
